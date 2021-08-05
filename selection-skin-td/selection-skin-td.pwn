@@ -22,7 +22,7 @@ public OnGameModeInit()
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	
 	
-	select_skin_TD[0] = TextDrawCreate(151.6666, 160.8073, "LD_SPAC:white"); // пусто
+	select_skin_TD[0] = TextDrawCreate(151.6666, 160.8073, "LD_SPAC:white"); // РїСѓСЃС‚Рѕ
 	TextDrawTextSize(select_skin_TD[0], 64.0000, 126.0000);
 	TextDrawAlignment(select_skin_TD[0], 1);
 	TextDrawColor(select_skin_TD[0], -1);
@@ -31,7 +31,7 @@ public OnGameModeInit()
 	TextDrawSetProportional(select_skin_TD[0], 0);
 	TextDrawSetShadow(select_skin_TD[0], 0);
 
-	select_skin_TD[1] = TextDrawCreate(199.3333, 273.6370, ""); // пусто
+	select_skin_TD[1] = TextDrawCreate(199.3333, 273.6370, ""); // РїСѓСЃС‚Рѕ
 	TextDrawTextSize(select_skin_TD[1], 11.0000, 12.0000);
 	TextDrawAlignment(select_skin_TD[1], 1);
 	TextDrawColor(select_skin_TD[1], -1);
@@ -281,13 +281,13 @@ stock SelectBuySkinClose(playerid)
 stock SkinBuyListTransition(playerid, bool:where)
 {
     if(!SelectSkinOpen[playerid]) return false;
-	if(where)   // Вперёд
+	if(where)   // Р’РїРµСЂС‘Рґ
 	{
 		if(SkinPage[playerid] >= sizeof(gSkinIDBuyArray)) return false;
 		SkinPage[playerid] += 1;
 		UpdateSelectSkinSlot(playerid);
 	}
-	else        // Назад
+	else        // РќР°Р·Р°Рґ
 	{
 	    if(SkinPage[playerid] == 1) return false;
 	    SkinPage[playerid] -= 1;
@@ -350,7 +350,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 			{
 			    if(SelectSkinClick[playerid] != -1)
 			    {
-			        if(SelectSkinClick[playerid] == i) return SendClientMessage(playerid, -1, "Вы уже выбрали этот скин!");
+			        if(SelectSkinClick[playerid] == i) return SendClientMessage(playerid, -1, "Р’С‹ СѓР¶Рµ РІС‹Р±СЂР°Р»Рё СЌС‚РѕС‚ СЃРєРёРЅ!");
 					UpdateBGSelectSkinSlot(playerid, SelectSkinClick[playerid], false);
 			        SelectSkinClick[playerid] = i;
 			        UpdateBGSelectSkinSlot(playerid, i, true);
@@ -365,14 +365,14 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 		if(clickedid == select_skin_TD[3]) // Buy
 		{
 
-		    if(SelectSkinClick[playerid] == -1) return SendClientMessage(playerid, -1, "Вы ничего не выбрали!");
+		    if(SelectSkinClick[playerid] == -1) return SendClientMessage(playerid, -1, "Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РІС‹Р±СЂР°Р»Рё!");
 			new priceskin = gSkinPriceBuyArray[SkinPage[playerid] - 1][SelectSkinClick[playerid]];
-			if(GetPlayerMoney(playerid) < priceskin) return SendClientMessage(playerid, -1, "У вас нехватает денег!");
+			if(GetPlayerMoney(playerid) < priceskin) return SendClientMessage(playerid, -1, "РЈ РІР°СЃ РЅРµС…РІР°С‚Р°РµС‚ РґРµРЅРµРі!");
 			GivePlayerMoney(playerid, priceskin);
 			SetPlayerSkin(playerid, gSkinIDBuyArray[SkinPage[playerid] - 1][SelectSkinClick[playerid]]);
 			
 			new str[30 - 2 + 10];
-			format(str, sizeof(str), "С покупкой! С вас списано: %d$", priceskin);
+			format(str, sizeof(str), "РЎ РїРѕРєСѓРїРєРѕР№! РЎ РІР°СЃ СЃРїРёСЃР°РЅРѕ: %d$", priceskin);
 			SendClientMessage(playerid, -1, str);
 			SelectBuySkinClose(playerid);
 		}
